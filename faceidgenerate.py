@@ -27,6 +27,11 @@ def get_faceid(url):
        print("[Errno {0}] {1}".format(e.errno, e.strerror))
        
     face = json.loads(data)
-    return face[0]['faceId']
-    
-    
+    length = len(face)
+    print face
+    facearray = []
+    for j in face:
+        print j
+        facearray.append(str(j["faceId"]))
+    return facearray
+
