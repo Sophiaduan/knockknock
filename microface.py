@@ -2,6 +2,7 @@ import cognitive_face as CF
 import httplib, urllib, base64
 import json
 import faceidgenerate
+import saveface
 
 id1 = faceidgenerate.get_faceid('http://i.imgur.com/cX7kkGN.png')
 id2 = faceidgenerate.get_faceid('http://i.imgur.com/WrucVIE.png')
@@ -16,6 +17,7 @@ def compareall(id1, id2):
         res = facecompare(idx1,id2)
         if res == 1:
             print "Hello " + idx1
+            saveface.saveface("Alp",idx1)
             return True
 
     return False
