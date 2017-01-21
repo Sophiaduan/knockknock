@@ -28,10 +28,8 @@ def get_faceid(url):
        
     face = json.loads(data)
     length = len(face)
-    print face
     facearray = []
     for j in face:
-        print j
         facearray.append(str(j["faceId"]))
     return facearray
 
