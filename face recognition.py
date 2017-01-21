@@ -1,10 +1,10 @@
 import numpy as np
 import cv2
 
-face_cascade = cv2.CascadeClassifier('/Users/ajayg/Desktop/Boilermake/haarcascade_frontalface_default.xml')
+face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 if face_cascade.empty(): raise Exception("your face_cascade is empty. are you sure, the path is correct ?")
 
-eye_cascade = cv2.CascadeClassifier('/Users/ajayg/Desktop/Boilermake/parojos.xml')
+eye_cascade = cv2.CascadeClassifier('parojos.xml')
 if eye_cascade.empty(): raise Exception("your eye_cascade is empty. are you sure, the path is correct ?")
 
 video = cv2.VideoCapture(0)
