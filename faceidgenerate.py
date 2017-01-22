@@ -2,6 +2,7 @@ import httplib, urllib, base64
 import json
 
 def get_faceid(url):
+    url = str(url)
     headers = {
         # Request headers
         'Content-Type': 'application/json',
@@ -32,4 +33,4 @@ def get_faceid(url):
     for j in face:
         facearray.append(str(j["faceId"]))
     return facearray
-
+#get_faceid("https://scontent-ort2-1.xx.fbcdn.net/v/t1.0-9/11229756_10153604723888678_8829369506583921846_n.jpg?oh=283d514f74528fbb5a212d18e6c47d06&oe=591D2550")
