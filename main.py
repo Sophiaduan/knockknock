@@ -6,34 +6,49 @@ import face_recognition_real
 import sendNameByMMS
 import time
 
-face_recognition_real.activateCamera()
-url = face_recognition_real.getURLString()
+try:
+	face_recognition_real.activateCamera()
+	url = face_recognition_real.getURLString()
 
-facearray = faceidgenerate.get_faceid(url)
+	facearray = faceidgenerate.get_faceid(url)
 
-rowdetailsArrs = searchface.isInCSV(facearray)
-
-if len(rowdetailsArrs) != 0:
-	stringnames = ""
-	for row in rowdetailsArrs:
-		if len(rowdetailsArrs) != 1:
-			stringnames += row[1] + ", "
+	rowdetailsArrs = searchface.isInCSV(facearray)
+	if len(rowdetailsArrs) != 0:
+		stringnames = ""
+		for row in rowdetailsArrs:
+			if len(rowdetailsArrs) != 1:
+				stringnames += row[1] + ", "
+			else:
+				stringnames += row[1]
+		if len(rowdetailsArrs) == 1:
+			sendNameByMMS.sendText(url, stringnames + " is at your front door. Should this person come in?", "+17654045543")
 		else:
-			stringnames += row[1]
-	if len(rowdetailsArrs) == 1:
-		sendNameByMMS.sendText(url, stringnames + " is at your front door", "+17654045543")
+			sendNameByMMS.sendText(url, stringnames + " are at your front door. Should they come in?", "+17654045543")
+		time.sleep(30)
 	else:
-		sendNameByMMS.sendText(url, stringnames + " are at your front door", "+17654045543")
-else:
-	sendNameByMMS.sendText(url, "There is an unidentified person at your front door.  Should he/she come in? Provide name please", "+17654045543")
-	time.sleep(40)
-	with open("smsMessage.txt") as f:
-	    f.readline()
-	    content = f.readline()
-	if (content != "NO") and (content != "No") and (content != "no") :
-		##print facearray
-		if (len(facearray) >= 1):
-			saveface.saveface(content, facearray[0])
+		sendNameByMMS.sendText(url, "There is an unidentified person at your front door.  Should he/she come in?", "+17654045543")
+		time.sleep(30)
+		sendNameByMMS.sendSMS("Please enter the name of this person, or type no to ignore.", "+17654045543")
+		time.sleep(30)
+		with open("smsMessage.txt") as f:
+		    f.readline()
+		    content = f.readline().split(",")
+		if (len(content) >= 1 and (content[0] != "no" and content[0] != "NO" and content[0] != "No")) :
+			for i in range(len(content)):
+				# print content
+				# print facearray
+				if (i < len(content) and i < len(facearray)):
+					saveface.saveface(content[i], facearray[i])
+
+except:
+	print "it crashed"
+
+
+		# if (len(facearray) >= 1):
+		# 	for (int i = 0; i < facearray; i++) {
+		# 		saveface.saveface(content[i], facearray[i])
+		# 	}
+		# 	saveface.saveface(content, facearray[0])
 
 
     

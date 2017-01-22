@@ -13,4 +13,11 @@ def sendText(URL, body_message, phoneSTR): #e.g. sendText("google.com", "His nam
 	        URL,
 	    ],
 	)
+def sendSMS(body_message, phoneSTR):
+		message = client.messages.create(
+	    body = body_message,  # Message body, if any
+	    to = phoneSTR,
+	    from_= "+17657692087",
+	)
+
 #sendText("http://i.imgur.com/cX7kkGN.png", "This is Ajay and Natat", "+17654045543")
