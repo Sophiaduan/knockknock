@@ -25,7 +25,7 @@ if len(rowdetailsArrs) != 0:
 	else:
 		sendNameByMMS.sendText(url, stringnames + " are at your front door", "+17654045543")
 else:
-	sendNameByMMS.sendText(url, "There is an unidentified person at your front door. Would you like to add a name", "+17654045543")
+	sendNameByMMS.sendText(url, "There are unidentified people at your front door. Would you like to add a name", "+17654045543")
 	time.sleep(40)
 	with open("smsMessage.txt") as f:
 	    f.readline()
