@@ -1,7 +1,8 @@
 import httplib, urllib, base64
 import json
 
-def get_faceid(url):
+def get_faceid(url): #take url of image (imgur) as input image
+    #set params of request
     url = str(url)
     headers = {
         # Request headers
@@ -26,10 +27,11 @@ def get_faceid(url):
         conn.close()
     except Exception as e:
        print("[Errno {0}] {1}".format(e.errno, e.strerror))
-       
+    #parse json data   
     face = json.loads(data)
     length = len(face)
     facearray = []
+    #store faceids in facearray for each id
     for j in face:
         facearray.append(str(j["faceId"]))
     return facearray
