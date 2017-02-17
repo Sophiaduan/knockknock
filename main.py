@@ -7,6 +7,8 @@ import sendNameByMMS
 import time
 
 try:
+	PHONENO = "34554045671+"
+	PHONENO = PHONENO[::-1]
 	face_recognition_real.activateCamera()
 	url = face_recognition_real.getURLString()
 
@@ -21,14 +23,14 @@ try:
 			else:
 				stringnames += row[1]
 		if len(rowdetailsArrs) == 1:
-			sendNameByMMS.sendText(url, stringnames + " is at your front door. Should this person come in?", "+17654045543")
+			sendNameByMMS.sendText(url, stringnames + " is at your front door. Should this person come in?", PHONENO)
 		else:
-			sendNameByMMS.sendText(url, stringnames + " are at your front door. Should they come in?", "+17654045543")
+			sendNameByMMS.sendText(url, stringnames + " are at your front door. Should they come in?", PHONENO)
 		time.sleep(30)
 	else:
-		sendNameByMMS.sendText(url, "There is an unidentified person at your front door.  Should he/she come in?", "+17654045543")
+		sendNameByMMS.sendText(url, "There is an unidentified person at your front door.  Should he/she come in?", PHONENO)
 		time.sleep(30)
-		sendNameByMMS.sendSMS("Please enter the name of this person, or type no to ignore.", "+17654045543")
+		sendNameByMMS.sendSMS("Please enter the name of this person, or type no to ignore.", PHONENO)
 		time.sleep(30)
 		with open("smsMessage.txt") as f:
 		    f.readline()
